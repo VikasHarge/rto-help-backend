@@ -1,5 +1,12 @@
+const express = require('express')
+const cookieParser = require('cookie-parser')
+
+const app = express()
+app.use(cookieParser())
+
+
 //this function  will send jwt in cookies
-const sendJWT = (admin, statusCode, res)=>{
+const sendJWT = (res, admin)=>{
     //Get Token
     const token = admin.getJWT()
     console.log(token);
@@ -11,14 +18,33 @@ const sendJWT = (admin, statusCode, res)=>{
         ),
         httpOnly : true,
         withCredentials : true,
+        sercue : true,
     }
 
     //Sending Cookies
-    res.status(statusCode).cookie('JWTtoken', token, options).json({
+    res.cookie('JWTtoken', token, options)
+    res.status(201).json({
         success : true,
+        message : "Logged in succesfully",
         admin,
         token,
     })
+
+    //example
+        // const options = {
+        //     expires : new Date(
+        //         Date.now()+process.env.COOKIES_EXPIRE* 24 * 60 * 60 * 1000
+        //     ),
+        //     httpOnly : true,
+        //     withCredentials : true,
+        //     sercue : true,
+        // }
+        // res.cookie('2', 'data')
+        // res.status(200).json({
+        //     success : true,
+        //     message : "Logged in succesfully",
+        // })
+
 }
 
 module.exports = sendJWT;

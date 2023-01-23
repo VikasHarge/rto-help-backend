@@ -9,6 +9,7 @@ const Admin = require('../models/adminModel');
 //Admin Registration
 exports.adminRegister = catchAsyncError(async (req, res, next)=>{
 
+
     const { adminId, password } = req.body;
 
     const admin = await Admin.findOne({adminId : adminId})
@@ -29,23 +30,29 @@ exports.adminRegister = catchAsyncError(async (req, res, next)=>{
 //Admin Login
 exports.adminLogin = catchAsyncError(async (req, res, next)=>{
 
-    const {loginId, loginPassword} = req.body;
+    const {adminId, password} = req.body;
+
+    console.log('Login runs');
+    console.log(adminId);
 
     // //Check if value entered
-    if(!loginId || !loginPassword){
-        return next(new ErrorHandler("please Enter loginId Password", 400))
+    if(!adminId || !password){
+        return next(new ErrorHandler("please Enter login Id Password", 400))
     }
 
     //Search for admin in data Base
-    const admin = await Admin.findOne({adminId : loginId}).select("password")
+    const admin = await Admin.findOne({adminId : adminId}).select("+password")
 
+    console.log("--------------------------------");
     console.log(admin);
+    console.log("--------------------------------");
+
 
     if(!admin){
         return next(new ErrorHandler("Admin Not Found"), 400)
     }
 
-    const isPassMatched = await admin.comparePassword(loginPassword)
+    const isPassMatched = await admin.comparePassword(password)
 
     if(!isPassMatched){
         return next(new ErrorHandler('Invalid passord or email', 400))
@@ -58,7 +65,7 @@ exports.adminLogin = catchAsyncError(async (req, res, next)=>{
 
     await admin.save()
 
-    sendJWT(admin, 200, res)
+    sendJWT(res, admin)
 
 })
 
