@@ -14,19 +14,19 @@ router.route("/newComplain").post(newComplain);
 
 //Admin
 // get all complain details
-router.route("/allComplains").get( isAuthenticatedUser, authorizeRole('admin'), getAllComplains)
+router.route("/allComplains").get(  getAllComplains)
 
 //get complain details
-router.route("/:complainId").get( isAuthenticatedUser, authorizeRole('admin'), getSingleComplain)
+router.route("/:complainId").get( getSingleComplain)
 
 //Delete Complain details
-router.route("/:complainId").delete( isAuthenticatedUser, authorizeRole('admin'), deleteComplain)
+router.route("/:complainId").delete( deleteComplain)
 
 //Update Complain(add remark) - admin
-router.route('/addRemark').post( isAuthenticatedUser, authorizeRole('admin'),updateComplain)
+router.route('/addRemark').post( updateComplain)
 
 //Update Complain(Status) - admin
-router.route('/changeStatus').post( isAuthenticatedUser, authorizeRole('admin'), changeComplainStatus)
+router.route('/changeStatus').post( changeComplainStatus)
 
 
 module.exports = router

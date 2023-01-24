@@ -40,22 +40,21 @@ const complainSchema = new mongoose.Schema({
     date : {
         type : Date,
         default : Date.now(),
+    },
+    frontVideoUrl : {
+        type : String,
+        require : [true, "invalid Url"]
+    },
+    mainVideoUrl : {
+        type : String,
+        require : [true, "invalid Url"]
     }
-    // frontVideo : {
-    //     type : String,
-    //     require : [true, "front Url Required"],
-    // },
-    // mainVideo : {
-    //     type : String,
-    //     require : [true, "Main url required"]
-    // }
 })
 
 complainSchema.pre('save', function(next){
     this.date = Date.now()
     next();
 })
-
 
 
 module.exports = mongoose.model("rto-complains", complainSchema)

@@ -7,10 +7,10 @@ const Complain = require('../models/complainModel')
 
 
 //Register New Complain
-exports.newComplain =  async (req, res, next)=>{
+exports.newComplain =  catchAsyncError(async (req, res, next)=>{
 
     //Create new Complain
-    const { name, phone, vehicleNumber, description, location } = req.body;
+    const { name, phone, vehicleNumber, description, location, mainVideoUrl, frontVideoUrl  } = req.body;
     
 
     console.log("runs");
@@ -20,6 +20,8 @@ exports.newComplain =  async (req, res, next)=>{
         vehicleNumber,
         description,
         location,
+        frontVideoUrl,
+        mainVideoUrl
     })
 
     res.status(200).json({
@@ -27,7 +29,7 @@ exports.newComplain =  async (req, res, next)=>{
         message : "Complain Submitted Successfully",
         complain : complain
     })
-}
+})
 
 
 //Admin 

@@ -6,6 +6,10 @@ const cookieParser = require('cookie-parser')
 
 //Express Module
 const app = express();
+//Body-Parser
+app.use(bodyParser.urlencoded({limit : 500000000 , extended : true, parameterLimit:500000}));
+app.use(bodyParser.json({limit : 500000000}))
+
 app.use(express.json())
 
 //Cookie-parser
@@ -14,8 +18,6 @@ app.use(cookieParser())
 //Cors Added
 app.use(cors({origin: true, credentials: true}))
 
-//Body-Parser
-app.use(bodyParser.urlencoded({extended : true}));
 
 
 
