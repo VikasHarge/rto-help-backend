@@ -6,6 +6,11 @@ const { isAuthenticatedUser, authorizeRole } = require("../middleware/auth");
 //Router modeule
 const router = express.Router();
 
+//Default Route
+router.route('/').get((req, res, next)=>{
+    res.send('<h1>Welcome to rto-help server</h1>')
+})
+
 //Complain Route
 //new complain register
 router.route("/newComplain").post(newComplain);

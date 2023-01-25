@@ -26,13 +26,10 @@ const complainRouter = require("./routes/complainRoute")
 const adminRoute = require("./routes/adminRoute");
 const sendJWT = require('./utils/jwt');
 
-//Default Route
-app.use('/',(req, res, next)=>{
-    res.send('<h1>Welcome to rto-help server</h1>')
-})
+
 
 //Redirect to function
-app.use('/complains', complainRouter)
+app.use('/', complainRouter)
 app.use('/admin', adminRoute)
 
 
