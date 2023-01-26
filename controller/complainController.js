@@ -10,7 +10,7 @@ const Complain = require('../models/complainModel')
 exports.newComplain =  catchAsyncError(async (req, res, next)=>{
 
     //Create new Complain
-    const { name, phone, vehicleNumber, description, location, mainVideoUrl, frontVideoUrl  } = req.body;
+    const { name, phone, vehicleNumber, description, cord, mainVideoUrl, frontVideoUrl  } = req.body;
     
 
     console.log("runs");
@@ -19,7 +19,7 @@ exports.newComplain =  catchAsyncError(async (req, res, next)=>{
         phone,
         vehicleNumber,
         description,
-        location,
+        cord,
         frontVideoUrl,
         mainVideoUrl
     })

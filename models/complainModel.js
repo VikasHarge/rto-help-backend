@@ -21,7 +21,7 @@ const complainSchema = new mongoose.Schema({
         type : String,
         required : [true, "please Enter Complain Description"],
     },
-    location : {
+    cord : {
         latitude : {
             type : Number,
         },
