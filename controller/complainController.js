@@ -27,7 +27,7 @@ exports.newComplain =  catchAsyncError(async (req, res, next)=>{
     res.status(200).json({
         success : true,
         message : "Complain Submitted Successfully",
-        complain : complain
+        complainId : complain._id
     })
 })
 
