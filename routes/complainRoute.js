@@ -16,7 +16,6 @@ router.route('/').get((req, res, next)=>{
 router.route("/newComplain").post(newComplain);
 
 
-
 //Admin
 // get all complain details
 router.route("/allComplains").get(  getAllComplains)

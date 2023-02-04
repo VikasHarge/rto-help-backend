@@ -27,7 +27,7 @@ const adminRoute = require("./routes/adminRoute");
 const sendJWT = require('./utils/jwt');
 
 //Redirect to function
-// app.use('/', complainRouter)
+app.use('/complain', complainRouter)
 app.use('/admin', adminRoute)
 
 
