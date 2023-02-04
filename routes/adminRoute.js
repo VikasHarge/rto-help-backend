@@ -13,10 +13,10 @@ router.route('/register').post(adminRegister)
 router.route('/login').post(adminLogin)
 
 //Route to logout
-router.route('/logout').post(adminLogout)
+router.route('/logout').get(adminLogout)
 
 //Get Admin Details
-router.route('/me').get( isAuthenticatedUser, authorizeRole('admin'), getAdminDetails)
+router.route('/me').get( isAuthenticatedUser, authorizeRole('admin'),  getAdminDetails)
 
 
 

@@ -10,6 +10,7 @@ const Admin = require('../models/adminModel');
 exports.adminRegister = catchAsyncError(async (req, res, next)=>{
 
 
+    console.log('Admin Reggister runs');
     const { adminId, password } = req.body;
 
     const admin = await Admin.findOne({adminId : adminId})
@@ -43,11 +44,6 @@ exports.adminLogin = catchAsyncError(async (req, res, next)=>{
     //Search for admin in data Base
     const admin = await Admin.findOne({adminId : adminId}).select("+password")
 
-    console.log("--------------------------------");
-    console.log(admin);
-    console.log("--------------------------------");
-
-
     if(!admin){
         return next(new ErrorHandler("Admin Not Found"), 400)
     }
@@ -72,8 +68,14 @@ exports.adminLogin = catchAsyncError(async (req, res, next)=>{
 //Logout 
 exports.adminLogout =  async (req, res, next)=>{
 
-    res.clearCookie('JWTtoken')
+    console.log(res);
 
+    const options = {
+        expires: new Date(Date.now()),
+        httpOnly: true,
+        withCredentials: true,
+    }
+    res.cookie('JWTtoken', null, options)
     res.status(200).json({
         success: true,
         message: "Logged Out Successfully",
@@ -83,6 +85,9 @@ exports.adminLogout =  async (req, res, next)=>{
 
 //Get User Details
 exports.getAdminDetails = catchAsyncError ( async (req, res, next)=>{
+
+    console.log('Get User Detail Runs runs');
+
 
     const admin = await Admin.findById(req.admin.id);
 

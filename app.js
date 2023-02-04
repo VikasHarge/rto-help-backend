@@ -13,7 +13,7 @@ app.use(bodyParser.json({limit : 500000000}))
 app.use(express.json())
 
 //Cookie-parser
-app.use(cookieParser())
+app.use(cookieParser('123-456-789'))
 
 //Cors Added
 app.use(cors({origin: true, credentials: true}))
@@ -26,12 +26,9 @@ const complainRouter = require("./routes/complainRoute")
 const adminRoute = require("./routes/adminRoute");
 const sendJWT = require('./utils/jwt');
 
-
-
 //Redirect to function
-app.use('/', complainRouter)
+// app.use('/', complainRouter)
 app.use('/admin', adminRoute)
-
 
 
 //Middleware to handle Error

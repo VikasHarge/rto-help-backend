@@ -29,22 +29,6 @@ const sendJWT = (res, admin)=>{
         admin,
         token,
     })
-
-    //example
-        // const options = {
-        //     expires : new Date(
-        //         Date.now()+process.env.COOKIES_EXPIRE* 24 * 60 * 60 * 1000
-        //     ),
-        //     httpOnly : true,
-        //     withCredentials : true,
-        //     sercue : true,
-        // }
-        // res.cookie('2', 'data')
-        // res.status(200).json({
-        //     success : true,
-        //     message : "Logged in succesfully",
-        // })
-
 }
 
 module.exports = sendJWT;

@@ -4,7 +4,7 @@ const ErrorHandler = require("../utils/errorhandler")
 module.exports = (err, req, res, next)=>{
 
     err.message = err.message || "Enternal Error"
-    err.statusCode = err.statusCode || 500
+    err.statusCode = err.statusCode || 404
 
     //Cast Error Handler
     if(err.name === "CastError"){

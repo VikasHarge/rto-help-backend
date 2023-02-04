@@ -4,29 +4,20 @@ const ErrorHandler = require("../utils/errorhandler");
 const catchAsyncError = require("./catchAsyncError");
 
 
-
-
-
-
-
 exports.isAuthenticatedUser = catchAsyncError(async (req, res, next)=>{
 
+    console.log("authentication runs");
     const {JWTtoken} = req.cookies;
-
     console.log('cookie from req', JWTtoken);
 
     if(!JWTtoken){
-        return next (new ErrorHandler('Unauthorised Reqest, Please Login', 400))
+        return next (new ErrorHandler('Unauthorised Reqest, Please Login', 401))
     }
 
     const decodedData = jwt.verify(JWTtoken, process.env.JWT_KEY)
-
     console.log('decoaded Data', decodedData);
-
     req.admin = await Admin.findById(decodedData.id)
-
     next()
-
 })
 
 //To check Role
