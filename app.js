@@ -12,13 +12,11 @@ app.use(bodyParser.json({limit : 500000000}))
 
 app.use(express.json())
 
-//Cookie-parser
-app.use(cookieParser('123-456-789'))
-
 //Cors Added
 app.use(cors({origin: true, credentials: true}))
 
-
+//Cookie-parser
+app.use(cookieParser('123-456-789'))
 
 
 //Import Router
